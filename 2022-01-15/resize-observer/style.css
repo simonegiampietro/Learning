@@ -1,0 +1,45 @@
+html,
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 1.5em;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.container {
+    max-width: 30rem;
+    margin: auto;
+    display: flex;
+}
+
+.box {
+    flex-grow: 2;
+    height: 5rem;
+    background-color: wheat;
+}
+
+.text {
+    flex-grow: 1;
+    min-width: 50%;
+    max-width: 60%;
+}
+
+@keyframes placeholder {
+    from, to {
+        font-size: 1rem;
+    }
+    50% {
+        font-size: 1.1rem;
+    }
+}
+
+.text[contentEditable]:empty:not(:focus)::before {
+    content:attr(data-text);
+    color: gainsboro;
+    animation: placeholder 10s ease-in-out infinite;
+}

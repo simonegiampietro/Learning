@@ -1,0 +1,96 @@
+html,
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 1.5em;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+h1, 
+h4 {
+    margin: 0;
+    text-align: center;
+}
+
+div.display-none {
+    display: none;
+}
+
+.container {
+    height: 150vh;
+    padding: 10rem;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.second-exercise {
+    height: 100vh;
+    justify-content: space-evenly;
+}
+
+.titles {
+    position: sticky;
+    top: 1rem;
+}
+
+.test {
+    width: 23ch;
+    height: 10ch;
+    margin: 0 auto;
+    background: blue;
+}
+
+.scrollable-container {
+    width: 70%;
+    height: 10rem;
+    border: 1px solid black;
+    overflow: auto;
+}
+
+.overflow-container {
+    width: 100%;
+    height: 200%;
+    padding: 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: flex-end;
+}
+
+.little-test {
+    height: 7ch;
+    width: 16ch;
+    background-color: blue;
+}
+
+.last-example {
+    width: 75vw;
+    height: 75vh;
+    margin: 10vh auto;
+    padding: 1rem;
+    border: 1px black dotted;
+    overflow-y: auto;
+    overflow-x: hidden;
+}
+
+.child {
+    width: 100%;
+    padding: .5rem;
+    border: 1px gray solid;
+    transition: all 500ms ease-out;
+}
+
+.not-visible {
+    opacity: 0;
+    transform: translateX(20%);
+}
+
+.child + .child {
+    margin-top: 1rem;
+}

@@ -1,0 +1,64 @@
+html,
+body {
+    margin: 0;
+    box-sizing: border-box;
+    font-size: 1.25em;
+}
+
+*,
+*::before,
+*::after {
+    box-sizing: inherit;
+}
+
+.bg-parent {
+    background-color: rgb(180, 253, 229);
+}
+
+.bg-console {
+    background-color: rgb(201, 222, 230);
+}
+
+.bg-child {
+    background-color: rgb(230, 207, 201);
+}
+
+.border-black {
+    border: 1px black dashed;
+    border-radius: .125em;
+}
+
+.border-bottom-gray {
+    border-bottom: 1px rgb(104, 104, 104) solid;    
+}
+
+.padding {
+    padding: .5em
+}
+
+.view-container {
+    max-width: 30rem;
+    margin: auto;
+}
+
+.container {
+    padding: 1rem 2rem;
+    display: flex;
+    justify-content: space-between;
+}
+
+.child {
+    max-width: 15ch;
+    aspect-ratio: 1;
+    padding: .75rem;
+    display: grid;
+    place-content: center;
+}
+
+.console {
+    min-height: 10ch;
+}
+
+.console code {
+    white-space: pre-wrap;
+}

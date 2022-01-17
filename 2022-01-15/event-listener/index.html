@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Event Listener</title>
+    <style>
+        html,
+        body {
+            margin: 0;
+            box-sizing: border-box;
+            font-size: 1.5em;
+            font-family: Verdana, Geneva, Tahoma, sans-serif;
+        }
+
+        *,
+        *::before,
+        *::after {
+            box-sizing: inherit;
+        }
+
+        h2 {
+            text-align: center;
+        }
+
+        div {
+            position: relative;
+            margin: auto;
+            border: 1px black dashed;
+            display: grid;
+        }
+
+        div::after {
+            content: var(--value);
+            position: absolute;
+            top: .25rem;
+            left: .25rem;
+            font-size: .75rem;
+        }
+
+        .grandparent,
+        .grandparent-capt {
+            width: 400px;
+            height: 400px;
+        }
+
+        .parent,
+        .child,
+        .parent-capt,
+        .child-capt {
+            width: 50%;
+            height: 50%;
+        }
+
+        .bg-0 {
+            --value: '0';
+            background-color: azure;
+        }
+
+        .bg-1 {
+            --value: '1';
+            background-color: green;
+        }
+
+        .bg-2 {
+            --value: '2';
+            background-color: aquamarine;
+        }
+
+        .bg-3 {
+            --value: '3';
+            background-color: brown;
+        }
+
+        .bg-4 {
+            --value: '4';
+            background-color: coral;
+        }
+
+        .bg-5 {
+            --value: '5';
+            background-color: turquoise;
+        }
+
+        .bg-6 {
+            --value: '6';
+            background-color: teal;
+        }
+
+        .bg-7 {
+            --value: '7';
+            background-color: springgreen;
+        }
+    </style>
+</head>
+<body>
+    <h2>Click on divs</h2>
+    
+    <div class="grandparent bg-5">
+        <div class="parent bg-6">
+            <div class="child bg-7"></div>
+        </div>
+    </div>
+
+    <h2>Click on divs</h2>
+    
+    <div id="gp-capt" class="grandparent-capt bg-7">
+        <div id="p-capt" class="parent-capt bg-6">
+            <div id="c-capt" class="child-capt bg-5"></div>
+        </div>
+    </div>
+
+    <script>
+        let grandParentCounter = 5, parentCounter = 6, childCounter = 7
+        const grandparent = document.querySelector('.grandparent')
+        const parentEl = document.querySelector('.parent')
+        const child = document.querySelector('.child')
+
+        grandparent.addEventListener('click', getClickListener(grandparent, grandParentCounter))
+        parentEl.addEventListener('click', getClickListener(parentEl, parentCounter))
+        child.addEventListener('click', getClickListener(child, childCounter))
+
+        function getClickListener(element, counter) {
+            return (event) => {
+                if (counter === 0) {
+                    event.stopPropagation()
+                    return;
+                }
+                element.classList.toggle(`bg-${counter}`)
+                counter--
+                element.classList.toggle(`bg-${counter}`)
+            }
+        }
+
+        // With event delegation
+        document.addEventListener('click', event => {
+            if (event.target.matches('div') && ['gp-capt', 'p-capt', 'c-capt'].includes(event.target.id)) {
+                const bgClass = event.target.classList.item(1)
+                let counter = +bgClass.substring('bg-'.length)
+                if (counter === 0) {
+                    event.stopPropagation()
+                    return
+                }
+                counter--
+                event.target.classList.replace(bgClass, `bg-${counter}`)
+            }
+        }, { capture: true })
+    </script>
+</body>
+</html>
